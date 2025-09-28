@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancake Master - Master the Art of Pancake Making</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="logo-icon">🥞</div>
+                    <span class="logo-text">Pancake Master</span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#recipes" class="nav-link">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Master the Art of Pancake Making</h1>
+                <p class="hero-subtitle">Discover delicious recipes, perfect your technique, and become a true pancake master.</p>
+                <button class="cta-button" id="explore-btn">Explore Recipes</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Recipes Section -->
+    <section class="recipes" id="recipes">
+        <div class="container">
+            <div class="recipes-header">
+                <h2 class="section-title">Our Recipes</h2>
+                <p class="section-subtitle">From classic buttermilk to exotic creations, find your next favorite pancake recipe.</p>
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search for a recipe...">
+                </div>
+            </div>
+            <div class="recipes-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Savory Uttapam">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Savory Uttapam</h3>
+                        <p class="recipe-description">A thick, savory pancake with vegetable toppings. A South Indian classic.</p>
+                        <button class="recipe-btn">View Recipe</button>
+                    </div>
+                </div>
+                <!-- Add more recipe cards as needed -->
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Classic Buttermilk Pancakes">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Classic Buttermilk</h3>
+                        <p class="recipe-description">Fluffy, golden pancakes made with buttermilk for that perfect tangy flavor.</p>
+                        <button class="recipe-btn">View Recipe</button>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Blueberry Pancakes">
+                    </div>
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Blueberry Delight</h3>
+                        <p class="recipe-description">Bursting with fresh blueberries, these pancakes are a breakfast favorite.</p>
+                        <button class="recipe-btn">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Detail Section -->
+    <section class="recipe-detail" id="recipe-detail">
+        <div class="container">
+            <div class="back-button">
+                <button class="back-btn" id="back-to-recipes">
+                    <span class="back-arrow">←</span>
+                    Back to Recipes
+                </button>
+            </div>
+            
+            <div class="recipe-detail-content">
+                <h1 class="recipe-detail-title">Savory Uttapam</h1>
+                <p class="recipe-detail-description">
+                    A thick, savory pancake from South India, made with a fermented rice and lentil batter and topped with delicious vegetables.
+                </p>
+                
+                <div class="recipe-image-large">
+                    <img src="https://images.pexels.com/photos/4518843/pexels-photo-4518843.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" alt="Savory Uttapam">
+                </div>
+                
+                <div class="ingredients-section">
+                    <h2 class="ingredients-title">Ingredients</h2>
+                    
+                    <div class="ingredients-grid">
+                        <div class="ingredients-column">
+                            <h3 class="ingredients-subtitle">For the Batter</h3>
+                            <ul class="ingredients-list">
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Millet grains – 1 cup</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Rice – 2 tbsp (optional, for crispness)</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Urad dal – 2 tbsp</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Water – as needed (to make thick batter)</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Salt to taste</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">ENO/baking soda – ¼ tsp</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ingredients-column">
+                            <h3 class="ingredients-subtitle">For the Toppings</h3>
+                            <ul class="ingredients-list">
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">1 large Onion, finely chopped</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">1 large Tomato, finely chopped</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">1-2 Green Chilies, finely chopped</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">1/4 cup chopped Coriander Leaves</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">1/2 inch Ginger, finely grated</span>
+                                </li>
+                                <li class="ingredient-item">
+                                    <input type="checkbox" class="ingredient-checkbox">
+                                    <span class="ingredient-text">Oil or Ghee for cooking</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="start-cooking-section">
+                    <button class="start-cooking-btn" id="start-cooking-btn">
+                        Start Cooking →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop" alt="About Pancake Master">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">About Pancake Master</h2>
+                    <p class="section-subtitle">Our mission is to bring the joy of pancake making to every home.</p>
+                    <p>Founded in 2025, Pancake Master started as a small blog dedicated to the world's favorite breakfast food. We believe that anyone can create delicious, fluffy pancakes with the right guidance and a bit of passion. Our collection of recipes is curated from chefs and home cooks around the globe, ensuring there's a pancake for every palate.</p>
+                    <p>Join our community and start your journey to becoming a true pancake master today!</p>
+
+                    <div class="values-section">
+                        <h3 class="values-title">Our Core Values</h3>
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <div class="value-icon">🌟</div>
+                                <h4 class="value-name">Quality</h4>
+                                <p class="value-description">We test every recipe to ensure it's delicious, reliable, and easy to follow.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">🤝</div>
+                                <h4 class="value-name">Community</h4>
+                                <p class="value-description">We foster a welcoming space for pancake lovers to share and learn.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">💡</div>
+                                <h4 class="value-name">Innovation</h4>
+                                <p class="value-description">We constantly explore new flavors and techniques to inspire your cooking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <!-- Cooking Instructions Section -->
+    <section class="cooking-instructions" id="cooking-instructions">
+        <div class="container">
+            <h2 class="section-title" id="cooking-recipe-title">Cooking: Savory Uttapam</h2>
+            <p class="section-subtitle">Follow the steps below to create your masterpiece.</p>
+
+            <div class="instructions-steps" id="instructions-steps-container">
+                <!-- Steps will be dynamically inserted here -->
+            </div>
+
+            <div class="cooking-footer">
+                <button class="cta-button" id="finish-cooking-btn">
+                    Done
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Congratulations Modal -->
+    <div class="congrats-modal-overlay" id="congrats-modal">
+        <div class="congrats-modal-content">
+            <div class="congrats-icon">🎉</div>
+            <h2 class="congrats-title">Congratulations!</h2>
+            <p class="congrats-text">You made your first pancake. Happy cooking!</p>
+            <button class="cta-button" id="close-congrats-modal-btn">
+                Awesome!
+            </button>
+        </div>
+    </div>
+
+      <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have a recipe to share or a question for our team? We'd love to hear from you.</p>
+                <a href="mailto:hello@pancakemaster.com" class="footer-email">hello@pancakemaster.com</a>
+            </div>
+            <div class="footer-content">
+                <p class="footer-text">© 2025 Pancake Master. All Rights Reserved. Made with 🥞 in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
