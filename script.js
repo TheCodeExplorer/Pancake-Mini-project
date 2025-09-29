@@ -3,35 +3,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    const header = document.querySelector('.header');
     const sections = document.querySelectorAll('section[id]');
+    const registrationForm = document.getElementById('register-form');
+    const loginForm = document.getElementById('login-form');
+    const loginRegistrationSection = document.getElementById('login-registration');
     const heroSection = document.getElementById('home');
     const congratsModal = document.getElementById('congrats-modal');
     const searchBar = document.getElementById('search-bar');
 
+    // Initially hide all sections except login/registration
+    sections.forEach(section => {
+        if (section.id !== 'login-registration') {
+            section.style.display = 'none';
+        }
+    });
+    navMenu.classList.add('hidden');
+    navToggle.classList.add('hidden');
 
-
-
-
+    // Toggle mobile navigation
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
 
     // Centralized function to show a section and hide others
     function showSection(targetId) {
-        const isFullScreenView = ['#recipes', '#recipe-detail', '#cooking-instructions'].includes(targetId);
-
         sections.forEach(section => {
             const sectionId = `#${section.id}`;
-
             if (sectionId === targetId) {
-                // Show the target section
-                section.style.display = section.id === 'home' ? 'flex' : 'block';
-                section.classList.add('active');
-            } else if (section.id === 'about' || section.id === 'contact') {
-                // Show 'about' and 'contact' only when NOT in a full-screen view.
-                section.style.display = isFullScreenView ? 'none' : 'block';
+                if (section.id === 'home') {
+                    section.style.display = 'flex';
+                } else {
+                    section.style.display = 'block';
+                }
             } else {
-                // Hide all other "page-like" sections (recipes, recipe-detail, etc.)
                 section.style.display = 'none';
-                section.classList.remove('active');
             }
         });
 
@@ -47,6 +53,71 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll to top of the page
         window.scrollTo(0, 0);
     }
+
+    const header = document.querySelector('.header');
+
+    // Function to handle header transparency
+    function handleHeaderTransparency() {
+        const homeSection = document.getElementById('home');
+        if (homeSection.style.display !== 'none' && window.scrollY < 100) {
+            header.classList.add('header-transparent');
+        } else {
+            header.classList.remove('header-transparent');
+        }
+    }
+
+    // Initial check
+    handleHeaderTransparency();
+
+    // Handle scroll
+    window.addEventListener('scroll', handleHeaderTransparency);
+
+    // Handle nav link clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            showSection(targetId);
+            // After showing the section, check for header transparency
+            setTimeout(handleHeaderTransparency, 0);
+        });
+    });
+
+    const recipeData = {
+        'Savory Uttapam': {
+            instructions: [
+                'Soak millet grains and urad dal for 4-6 hours.',
+                'Grind to a smooth batter, adding water as needed.',
+                'Ferment the batter for 8-10 hours.',
+                'Add salt and ENO/baking soda just before cooking.',
+                'Heat a pan and pour a ladleful of batter.',
+                'Top with chopped onions, tomatoes, and chilies.',
+                'Cook on both sides until golden brown.',
+                'Serve hot with chutney.'
+            ]
+        },
+        'Classic Buttermilk': {
+            instructions: [
+                'Whisk together flour, sugar, baking powder, and salt.',
+                'In a separate bowl, mix buttermilk, egg, and melted butter.',
+                'Pour wet ingredients into dry and mix until just combined.',
+                'Heat a lightly oiled griddle or frying pan over medium-high heat.',
+                'Pour or scoop the batter onto the griddle.',
+                'Cook until bubbles appear on the surface, then flip.',
+                'Cook until golden brown on the other side.',
+                'Serve hot with your favorite toppings.'
+            ]
+        },
+        'Blueberry Delight': {
+            instructions: [
+                'Follow the classic buttermilk pancake recipe.',
+                'Gently fold in fresh or frozen blueberries into the batter.',
+                'Be careful not to overmix.',
+                'Cook as per the classic buttermilk pancake instructions.',
+                'Serve with extra blueberries and maple syrup.'
+            ]
+        }
+    };
 
     // --- Cooking Instructions Logic ---
     function showCookingInstructions(recipeTitle) {
@@ -106,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             congratsModal.classList.remove('active');
             showSection('#recipes');
         }
+    });
 
     // --- Search Bar Logic ---
     searchBar.addEventListener('input', (e) => {
@@ -122,31 +194,102 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-// Button hover effect enhancement
-const buttons = document.querySelectorAll('.cta-button, .recipe-btn');
-buttons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        button.style.transform = 'translateY(-3px) scale(1.05)';
-    });
-    
-    button.addEventListener('mouseleave', () => {
-        button.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Parallax effect for hero section
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            const scrolled = window.pageYOffset;
-            if (heroSection && heroSection.style.display !== 'none') {
-                const rate = scrolled * -0.3; // Reduced rate for subtlety
-                heroSection.style.backgroundPositionY = `${rate}px`;
-            }
-            ticking = false;
+    // Button hover effect enhancement
+    const buttons = document.querySelectorAll('.cta-button, .recipe-btn');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px) scale(1.05)';
         });
-        ticking = true;
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Parallax effect for hero section
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                if (heroSection && heroSection.style.display !== 'none') {
+                    const rate = scrolled * -0.3; // Reduced rate for subtlety
+                    heroSection.style.backgroundPositionY = `${rate}px`;
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // --- Login/Register Form Switching ---
+    const showLoginBtn = document.getElementById('show-login-btn');
+    const showRegisterBtn = document.getElementById('show-register-btn');
+    const loginFormContainer = document.getElementById('login-form-container');
+    const registerFormContainer = document.getElementById('register-form-container');
+
+    if (showLoginBtn && showRegisterBtn && loginFormContainer && registerFormContainer) {
+        showLoginBtn.addEventListener('click', () => {
+            loginFormContainer.style.display = 'block';
+            registerFormContainer.style.display = 'none';
+            showLoginBtn.classList.add('active');
+            showRegisterBtn.classList.remove('active');
+        });
+
+        showRegisterBtn.addEventListener('click', () => {
+            loginFormContainer.style.display = 'none';
+            registerFormContainer.style.display = 'block';
+            showRegisterBtn.classList.add('active');
+            showLoginBtn.classList.remove('active');
+        });
     }
-});
+
+    // Registration form submission
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+
+            // Store user data in local storage
+            localStorage.setItem('registeredUser', JSON.stringify({ name, email, password }));
+
+            alert('Registration successful! Please login.');
+
+            // Switch to the login form
+            loginFormContainer.style.display = 'block';
+            registerFormContainer.style.display = 'none';
+            showLoginBtn.classList.add('active');
+            showRegisterBtn.classList.remove('active');
+        });
+    }
+
+    // Login form submission
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            console.log('Login attempt with:', { email, password });
+
+            const registeredUserJSON = localStorage.getItem('registeredUser');
+            console.log('Retrieved from local storage:', registeredUserJSON);
+
+            const registeredUser = JSON.parse(registeredUserJSON);
+            console.log('Parsed user from local storage:', registeredUser);
+
+            if (registeredUser && email === registeredUser.email && password === registeredUser.password) {
+                alert('Login successful!');
+                
+                // Show navigation and home page
+                navMenu.classList.remove('hidden');
+                navToggle.classList.remove('hidden');
+                showSection('#home');
+                setTimeout(handleHeaderTransparency, 0);
+            } else {
+                alert('Invalid email or password.');
+            }
+        });
+    }
 });

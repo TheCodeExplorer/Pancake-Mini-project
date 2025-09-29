@@ -36,11 +36,22 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--background-light);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 1000;
     transition: all 0.3s ease;
+}
+
+.header.header-transparent {
+    background: transparent;
+    border-bottom: none;
+}
+
+.header.header-transparent .nav-logo,
+.header.header-transparent .nav-link,
+.header.header-transparent .bar {
+    color: white;
 }
 
 .navbar {
@@ -73,6 +84,7 @@ body {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin-left: auto;
 }
 
 .nav-link {
@@ -118,6 +130,24 @@ body {
     transition: 0.3s;
 }
 
+section {
+    display: none;
+}
+
+.login-registration {
+    display: block;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -154,6 +184,7 @@ body {
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     line-height: 1.2;
+    text-align: center;
 }
 
 .hero-subtitle {
@@ -192,11 +223,6 @@ body {
     padding: 5rem 0;
     background: var(--background-light);
     min-height: 100vh;
-    display: none; /* Hidden by default */
-}
-
-.recipes.active {
-    display: block;
 }
 
 .recipes-header {
@@ -322,11 +348,6 @@ body {
 .recipe-detail {
     padding: 8rem 0 5rem;
     background: white;
-    display: none; /* Hidden by default */
-}
-
-.recipe-detail.active {
-    display: block;
 }
 
 .back-btn {
@@ -552,11 +573,6 @@ body {
     padding: 8rem 0 5rem;
     background: var(--background-light);
     min-height: 100vh;
-    display: none; /* Hidden by default */
-}
-
-.cooking-instructions.active {
-    display: block;
 }
 
 .cooking-instructions .section-title {
@@ -724,10 +740,6 @@ body {
         font-size: 1.1rem;
     }
 
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
     .section-title {
         font-size: 2rem;
     }
@@ -745,6 +757,58 @@ body {
         font-size: 1rem;
     }
 
+}
+
+/* Registration Section */
+.registration {
+    padding: 5rem 0;
+    background: var(--background-light);
+    min-height: 100vh;
+}
+
+.registration-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form .section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.2);
+}
+
+.registration .cta-button {
+    width: 100%;
+    margin-top: 1rem;
 }
 
 @media screen and (max-width: 992px) {
@@ -774,4 +838,42 @@ body {
         font-size: 1rem;
     }
 
+}
+
+/* Login and Registration Section */
+.login-registration {
+    padding: 5rem 0;
+    background: var(--background-light);
+    min-height: 100vh;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.toggle-btn.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
