@@ -244,24 +244,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Function to handle form submission with fetch
+    async function handleFormSubmit(event, url) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Success:', result);
+                alert('Form submitted successfully!');
+                // Optionally, redirect or show a success message
+            } else {
+                console.error('Error:', response.statusText);
+                alert('An error occurred. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+    }
+
     // Registration form submission
     if (registrationForm) {
         registrationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-
-            // Store user data in local storage
-            localStorage.setItem('registeredUser', JSON.stringify({ name, email, password }));
-
-            alert('Registration successful! Please login.');
-
-            // Switch to the login form
-            loginFormContainer.style.display = 'block';
-            registerFormContainer.style.display = 'none';
-            showLoginBtn.classList.add('active');
-            showRegisterBtn.classList.remove('active');
+            handleFormSubmit(e, '/api/register');
         });
     }
 
