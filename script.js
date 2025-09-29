@@ -9,35 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const congratsModal = document.getElementById('congrats-modal');
     const searchBar = document.getElementById('search-bar');
 
-    // Recipe Data
-    const recipeData = {
-        "Savory Uttapam": {
-            instructions: [
-                "Prepare the batter: Measure 1 cup millet, 2 tbsp rice, and 2 tbsp urad dal.Place them in a bowl and pour hot water over the grains.Let it soak while other ingredients are prepared.This quick soak reduces grinding time and helps the grains blend into a smooth batter.",
-                "Prepare toppings: Finely chop onion, tomato, green chilies, and coriander. Keep them ready in a bowl.",
-                "Grind the batter: Drain the water and grind the soaked ingredients to a smooth, thick batter, adding water as needed. Add salt, mix well, and let it ferment in a warm place for 8-12 hours.",
-                "Mix Batter & Add Fluff: Add salt to taste.Sprinkle ¼ tsp ENO or baking soda.Mix gently to incorporate air and activate fluffiness.",
-                "Preheat Pan: Preheat a tawa on medium heat.Lightly grease with 1 tsp oil.",
-                "Cook First Pancake: Pour ⅓ of batter onto the pan.Spread it slightly thick (not too thin).Sprinkle chopped vegetables evenly on top.",
-                "Flip and cook: Once the edges firm up and the bottom turns light golden brown, flip carefully with a spatula.Cook for 1–2 minutes until fully cooked but still soft.",
-                "Cook Remaining Pancakes: Repeat Step 6 and 7 for the second and third pancakes.Use remaining batter and vegetables.",
-                "Plate & Garnish: Place pancakes on plates.Add coconut chutney, tomato chutney, and sambar on the side.Garnish with fresh coriander leaves."
-            ]
-        },
-        "Classic Buttermilk": {
-            instructions: ["Instructions for Classic Buttermilk pancakes are coming soon!"]
-        },
-        "Blueberry Delight": {
-            instructions: ["Instructions for Blueberry Delight pancakes are coming soon!"]
-        }
-    };
 
 
-// Toggle mobile menu
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
+
+
 
     // Centralized function to show a section and hide others
     function showSection(targetId) {
@@ -72,35 +47,6 @@ navToggle.addEventListener('click', () => {
         // Scroll to top of the page
         window.scrollTo(0, 0);
     }
-
-    // Navigation click handling using event delegation
-    navMenu.addEventListener('click', (e) => {
-        if (e.target.matches('.nav-link')) {
-            e.preventDefault();
-            const targetId = e.target.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection && ['#home', '#recipes', '#recipe-detail', '#cooking-instructions'].includes(targetId)) {
-                showSection(targetId);
-            } else if (targetSection) {
-                // For sections like #about, #contact that are on the page
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-    });
-
-// Header background change on scroll
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    
-    if (scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
-    }
-});
 
     // --- Cooking Instructions Logic ---
     function showCookingInstructions(recipeTitle) {
@@ -145,22 +91,11 @@ window.addEventListener('scroll', () => {
         else if (e.target.matches('.recipe-btn')) {
             const recipeCard = e.target.closest('.recipe-card');
             const recipeTitle = recipeCard.querySelector('.recipe-title').textContent;
-            
-            // For now, only handle Savory Uttapam
-            if (recipeTitle === 'Savory Uttapam') {
-                showSection('#recipe-detail'); // This will need to be updated to handle dynamic data
-            } else {
-                alert('Recipe details coming soon!');
-            }
-        }
-        // Back to recipes button
-        else if (e.target.matches('#back-to-recipes')) {
-            showSection('#recipes');
-        }
-        // Start cooking button
-        else if (e.target.matches('#start-cooking-btn')) {
-            const recipeTitle = document.querySelector('.recipe-detail-title').textContent;
             showCookingInstructions(recipeTitle);
+        }
+        // Back to recipes button from cooking
+        else if (e.target.matches('#back-to-recipes-from-cooking')) {
+            showSection('#recipes');
         }
         // Finish cooking button
         else if (e.target.matches('#finish-cooking-btn')) {
@@ -169,9 +104,8 @@ window.addEventListener('scroll', () => {
         // Close congratulations modal button
         else if (e.target.matches('#close-congrats-modal-btn')) {
             congratsModal.classList.remove('active');
-            showSection('#recipe-detail');
+            showSection('#recipes');
         }
-    });
 
     // --- Search Bar Logic ---
     searchBar.addEventListener('input', (e) => {
@@ -214,12 +148,5 @@ window.addEventListener('scroll', () => {
         });
         ticking = true;
     }
-});
-
-// Loading animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    // Initially show the home section
-    showSection('#home');
 });
 });
